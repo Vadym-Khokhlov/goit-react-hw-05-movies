@@ -30,7 +30,6 @@ const MovieSearch = ({ onSubmit }) => {
   return (
     <SearchForm onSubmit={handleSubmit}>
       <SearchInput
-        className="SearchForm-input"
         type="text"
         name="search"
         value={search}
@@ -39,8 +38,8 @@ const MovieSearch = ({ onSubmit }) => {
         placeholder="Enter movie title"
         onChange={handleSearch}
       />
-      <SearchButton type="submit" className="SearchForm-button">
-        <span className="SearchForm-button-label">Search</span>
+      <SearchButton type="submit">
+        <span>Search</span>
       </SearchButton>
     </SearchForm>
   );

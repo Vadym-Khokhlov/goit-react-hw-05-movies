@@ -1,7 +1,7 @@
-import MovieSearch from 'components/MoviesList/MovieSearchForm';
+import MovieSearch from 'components/SearchMoviesList/MovieSearchForm';
 import React, { useState, useEffect } from 'react';
 import api from '../components/api';
-import { MovieList } from '../components/MoviesList/MovieList';
+import { MovieList } from '../components/SearchMoviesList/MovieList';
 import { Outlet, Link } from 'react-router-dom';
 
 export const Movies = () => {

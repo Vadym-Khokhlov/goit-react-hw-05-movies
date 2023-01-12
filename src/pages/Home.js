@@ -1,10 +1,9 @@
-import { HomeMovieList } from 'components/Home/HomeMoviesList';
+import { HomeMovieList } from 'components/HomeMoviesList/HomeMoviesList';
 
 export const Home = () => {
   return (
-    <main>
-      <h1>Welcome</h1>
+    <>
       <HomeMovieList />
-    </main>
+    </>
   );
 };

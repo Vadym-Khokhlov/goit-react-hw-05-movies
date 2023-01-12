@@ -1,6 +1,7 @@
 import api from 'components/api';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { PopularMovies } from './HomeMoviesList.styled';
 
 export function HomeMovieList() {
   const [trendingMovies, setTrending] = useState('');
@@ -19,7 +20,8 @@ export function HomeMovieList() {
   }, []);
 
   return (
-    <ul>
+    <PopularMovies>
+      Trending this week!
       {trendingMovies &&
         trendingMovies.map(movie => (
           <li key={movie.id}>
@@ -28,6 +30,6 @@ export function HomeMovieList() {
             </Link>
           </li>
         ))}
-    </ul>
+    </PopularMovies>
   );
 }

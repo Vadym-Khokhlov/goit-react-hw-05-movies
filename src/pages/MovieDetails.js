@@ -31,7 +31,12 @@ const MovieDetails = () => {
   return (
     <main>
       <div key={movie.id}>
-        <img src={movie.poster_path} alt="" />
+        <img
+          src={`https://image.tmdb.org/t/p/w300/${
+            movie.poster_path || movie.backdrop_path
+          }`}
+          alt=""
+        />
         <h2>{movie.title}</h2>
         <p>{movie.overview}</p>
       </div>

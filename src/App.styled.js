@@ -6,12 +6,11 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: start;
-  padding: 8px 0;
   margin-bottom: 16px;
   border-bottom: 1px solid black;
   background-size: cover;
   background-color: darkcyan; // /src/images
-  background-image: url('./images/library-header_desktop_1x.jpg');
+  // background-image: url('./images/library-header_desktop_1x.jpg');
   > nav {
     display: flex;
   }

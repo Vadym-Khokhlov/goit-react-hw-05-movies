@@ -2,20 +2,6 @@ import axios from 'axios';
 
 const key = 'b84ac87767a32f4b7dddc0cfcc03fc4c';
 
-const fetchMoviesByName = async (query, page) => {
-  try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${query}&page=${page}`
-    );
-    if (!response) {
-      throw new Error("Sorry, something wrong's happened");
-    }
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 async function fetchHomepageMovies() {
   try {
     const response = await axios.get(
@@ -29,6 +15,20 @@ async function fetchHomepageMovies() {
     console.error(error);
   }
 }
+
+const fetchMoviesByName = async (query, page) => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${query}&page=${page}`
+    );
+    if (!response) {
+      throw new Error("Sorry, something wrong's happened");
+    }
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 async function fetchMoviesById(id) {
   try {
@@ -44,8 +44,26 @@ async function fetchMoviesById(id) {
   }
 }
 
+const fetchPoster = async id => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${key}`
+  );
+
+  if (response.error) {
+    return 'Error';
+  }
+
+  return <img src={response.results.poster_path} alt="avatar" />;
+  console.log(response.results.poster_path);
+};
+
+// fetchCast
+
+// fetchReview
+
 export default {
   fetchMoviesByName,
   fetchHomepageMovies,
   fetchMoviesById,
+  fetchPoster,
 };
