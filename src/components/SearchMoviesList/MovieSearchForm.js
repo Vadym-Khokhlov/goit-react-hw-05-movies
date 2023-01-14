@@ -4,9 +4,6 @@ import {
   SearchForm,
   SearchInput,
 } from './MoviesSearchForm.styled';
-// import '../styles.css';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 const MovieSearch = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
