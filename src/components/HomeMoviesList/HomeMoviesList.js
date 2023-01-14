@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { PopularMovies } from './HomeMoviesList.styled';
 
 export function HomeMovieList() {
-  const [trendingMovies, setTrending] = useState('');
+  const [trendingMovies, setTrending] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export function HomeMovieList() {
       {trendingMovies &&
         trendingMovies.map(movie => (
           <li key={movie.id}>
-            <Link to={`search/${movie.id}`}>
+            <Link to={`movies/${movie.id}`}>
               <p>{movie.title}</p>
             </Link>
           </li>

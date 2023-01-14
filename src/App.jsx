@@ -1,28 +1,24 @@
 import './App.css';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+
+import SharedLayout from './components/SharedLayout';
 import { HomeMovieList } from './components/HomeMoviesList/HomeMoviesList';
-import api from './components/api';
-import MovieSearch from 'components/SearchMoviesList/MovieSearchForm';
-import { Link } from 'App.styled';
-import { Header } from 'App.styled';
-import { Home } from 'pages/Home';
+
 import { NotFound } from 'pages/NotFound';
 import { Movies } from 'pages/Movies';
 import { Review } from 'pages/Review';
 import { Cast } from 'pages/Cast';
 import MovieDetails from 'pages/MovieDetails';
-import { MovieList } from 'components/SearchMoviesList/MovieList';
-import SharedLayout from './components/SharedLayout';
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="search" element={<Movies />} />
+        <Route path="/" element={<HomeMovieList />} />
+        <Route path="movies" element={<Movies />} />
 
-        <Route path="search/:id" element={<MovieDetails />}>
+        <Route path="movies/:movieId" element={<MovieDetails />}>
           <Route path="review" element={<Review />} />
           <Route path="cast" element={<Cast />} />
         </Route>

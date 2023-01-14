@@ -1,20 +1,41 @@
+import api from 'components/api';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 export const Cast = () => {
+  const [error, setError] = useState('');
+  const [cast, setCast] = useState([]);
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    async function getCast() {
+      try {
+        const cast = await api.fetchCast(Number(movieId));
+        setCast(cast);
+        console.log(cast);
+      } catch (error) {
+        setError(error);
+      }
+    }
+    getCast();
+  }, [movieId]);
+
+  if (!cast) {
+    return;
+  }
+
   return (
     <section>
-      <h2>Our mission</h2>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut, nesciunt
-        veniam. Excepturi itaque, voluptates fugiat perspiciatis quo saepe! Iste
-        eaque porro eveniet error dicta, modi ipsum hic quis minima inventore.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quaerat
-        illum excepturi odit doloremque, vitae quasi corporis commodi nisi quae
-        perspiciatis amet consectetur reprehenderit inventore laborum facilis
-        quia mollitia exercitationem eaque rerum dignissimos maiores, quos iure
-        blanditiis. Dolorem, nam? Aliquid sequi molestias vel, tenetur maxime
-        pariatur? Molestiae libero cum quidem.
-      </p>
+      {cast.map(({ cast_id, original_name, character, profile_path }) => (
+        <li key={cast_id}>
+          <img
+            src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
+            alt={original_name}
+          />
+          <p>{original_name}</p>
+          <p>Character: {character}</p>
+        </li>
+      ))}
     </section>
   );
 };
