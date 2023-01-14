@@ -20,16 +20,22 @@ export function HomeMovieList() {
   }, []);
 
   return (
-    <PopularMovies>
-      Trending this week!
-      {trendingMovies &&
-        trendingMovies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`movies/${movie.id}`}>
-              <p>{movie.title}</p>
-            </Link>
-          </li>
-        ))}
-    </PopularMovies>
+    <>
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <PopularMovies>
+          Trending this week!
+          {trendingMovies &&
+            trendingMovies.map(movie => (
+              <li key={movie.id}>
+                <Link to={`movies/${movie.id}`}>
+                  <p>{movie.title}</p>
+                </Link>
+              </li>
+            ))}
+        </PopularMovies>
+      )}
+    </>
   );
 }

@@ -74,10 +74,12 @@ const fetchReview = async id => {
   }
 };
 
-export default {
+const api = {
   fetchHomepageMovies,
   fetchMoviesById,
   fetchMoviesByName,
   fetchReview,
   fetchCast,
 };
+
+export default api;

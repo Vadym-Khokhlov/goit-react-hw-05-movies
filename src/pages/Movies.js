@@ -2,7 +2,7 @@ import MovieSearch from 'components/SearchMoviesList/MovieSearchForm';
 import React, { useState, useEffect } from 'react';
 import api from '../components/api';
 import { MovieList } from '../components/SearchMoviesList/MovieList';
-import { Outlet, Link } from 'react-router-dom';
+// import { Outlet, Link } from 'react-router-dom';
 
 export const Movies = () => {
   const [search, setSearch] = useState('');
@@ -52,7 +52,7 @@ export const Movies = () => {
         {error && <p>Whoops, something went wrong: {error.message}</p>}
         {isLoading && <p>Loading...</p>}
 
-        {movies.length > 0 && <MovieList movies={movies} />}
+        {totalHits > 0 && <MovieList movies={movies} />}
       </div>
     </main>
   );

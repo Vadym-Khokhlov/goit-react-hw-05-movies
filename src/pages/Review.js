@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 export const Review = () => {
-  const [error, setError] = useState('');
   const [review, setReview] = useState([]);
   const { movieId } = useParams();
 
@@ -14,7 +13,7 @@ export const Review = () => {
         setReview(review);
         console.log(review);
       } catch (error) {
-        setError(error);
+        console.log(error);
       }
     }
     getReview();

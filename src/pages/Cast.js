@@ -26,16 +26,20 @@ export const Cast = () => {
 
   return (
     <section>
-      {cast.map(({ cast_id, original_name, character, profile_path }) => (
-        <li key={cast_id}>
-          <img
-            src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
-            alt={original_name}
-          />
-          <p>{original_name}</p>
-          <p>Character: {character}</p>
-        </li>
-      ))}
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        cast.map(({ cast_id, original_name, character, profile_path }) => (
+          <li key={cast_id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
+              alt={original_name}
+            />
+            <p>{original_name}</p>
+            <p>Character: {character}</p>
+          </li>
+        ))
+      )}
     </section>
   );
 };

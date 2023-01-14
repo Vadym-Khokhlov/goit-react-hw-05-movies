@@ -32,21 +32,31 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <BackLink to={backLinkHref}>Back to movies</BackLink>
-      <div key={id}>
-        <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" />
-        <h2>{title}</h2>
-        <h2>Genres:</h2>
-        <ul>
-          {genres && genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
-        </ul>
-        <p>{overview}</p>
-      </div>
-      <div>
-        <Link to="cast">Cast</Link>
-        <Link to="review">Review</Link>
-        <Outlet />
-      </div>
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <>
+          <BackLink to={backLinkHref}>Back to movies</BackLink>
+          <div key={id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+              alt=""
+            />
+            <h2>{title}</h2>
+            <h2>Genres:</h2>
+            <ul>
+              {genres &&
+                genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
+            </ul>
+            <p>{overview}</p>
+          </div>
+          <div>
+            <Link to="cast">Cast</Link>
+            <Link to="review">Review</Link>
+            <Outlet />
+          </div>
+        </>
+      )}
     </main>
   );
 };
