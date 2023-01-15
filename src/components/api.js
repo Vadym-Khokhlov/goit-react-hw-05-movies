@@ -12,7 +12,7 @@ async function fetchHomepageMovies() {
     }
     return response.data.results;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
@@ -26,7 +26,7 @@ const fetchMoviesByName = async (query, page) => {
     }
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -40,7 +40,7 @@ const fetchMoviesById = async movieId => {
     }
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 

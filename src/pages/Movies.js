@@ -20,14 +20,14 @@ export const Movies = () => {
 
       setIsLoading(true);
       try {
-        const moviesData = await api.fetchMoviesByName(query, page);
-        if (moviesData.total_results === 0) {
+        const movies = await api.fetchMoviesByName(query, page);
+        if (movies.total_results === 0) {
           setError('Nothing was found, try again');
           return;
         }
 
-        setMovies(prevState => [...prevState, ...moviesData.results]);
-        setTotalHits(moviesData.total_results);
+        setMovies(movies.results);
+        setTotalHits(movies.total_results);
         setError('');
       } catch (error) {
         setError('Houston, we have a problem:) try to reload the page');
@@ -46,14 +46,18 @@ export const Movies = () => {
 
   return (
     <main>
-      <h1>Movies page</h1>
-      <MovieSearch onSubmit={handleFormSubmit} />
-      <div>
-        {error && <p>Whoops, something went wrong: {error.message}</p>}
-        {isLoading && <p>Loading...</p>}
+      {movies && (
+        <>
+          <h1>Movies page</h1>
+          <MovieSearch onSubmit={handleFormSubmit} />
+          <div>
+            {error && <p>Whoops, something went wrong: {error.message}</p>}
+            {isLoading && <p>Loading...</p>}
 
-        {totalHits > 0 && <MovieList movies={movies} />}
-      </div>
+            {totalHits > 0 && <MovieList movies={movies} />}
+          </div>
+        </>
+      )}
     </main>
   );
 };
