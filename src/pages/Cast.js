@@ -1,8 +1,8 @@
-import api from 'components/api';
+import api from 'services/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Cast = () => {
+const Cast = () => {
   const [error, setError] = useState('');
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
@@ -12,7 +12,6 @@ export const Cast = () => {
       try {
         const cast = await api.fetchCast(Number(movieId));
         setCast(cast);
-        console.log(cast);
       } catch (error) {
         setError(error);
       }
@@ -43,3 +42,5 @@ export const Cast = () => {
     </section>
   );
 };
+
+export default Cast;

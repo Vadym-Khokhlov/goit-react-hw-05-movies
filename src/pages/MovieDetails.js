@@ -1,8 +1,8 @@
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BackLink } from '../components/BackLink';
-
-import api from 'components/api';
+import { Suspense } from 'react';
+import api from 'services/api';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
@@ -44,7 +44,6 @@ const MovieDetails = () => {
             />
             <h2>{title}</h2>
             <h2>Genres:</h2>
-            <p>{poster_path}</p>
             <ul>
               {genres &&
                 genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
@@ -54,7 +53,9 @@ const MovieDetails = () => {
           <div>
             <Link to="cast">Cast</Link>
             <Link to="review">Review</Link>
-            <Outlet />
+            <Suspense fallback={<div>Loading subpage...</div>}>
+              <Outlet />
+            </Suspense>
           </div>
         </>
       )}

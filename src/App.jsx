@@ -1,17 +1,19 @@
-import './App.css';
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import './App.css';
 
 import SharedLayout from './components/SharedLayout';
-import { HomeMovieList } from './components/HomeMoviesList/HomeMoviesList';
-
 import { NotFound } from 'pages/NotFound';
-import { Movies } from 'pages/Movies';
-import { Review } from 'pages/Review';
-import { Cast } from 'pages/Cast';
-import MovieDetails from 'pages/MovieDetails';
 
-export const App = () => {
+const HomeMovieList = lazy(() =>
+  import('./components/HomeMoviesList/HomeMoviesList')
+);
+const Movies = lazy(() => import('./pages/Movies'));
+const MovieDetails = lazy(() => import('./pages/MovieDetails'));
+const Review = lazy(() => import('./pages/Review'));
+const Cast = lazy(() => import('./pages/Cast'));
+
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

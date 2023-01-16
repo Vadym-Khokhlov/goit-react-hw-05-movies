@@ -1,9 +1,11 @@
-import api from 'components/api';
+import api from 'services/api';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { PopularMovies } from './HomeMoviesList.styled';
 
-export function HomeMovieList() {
+import { Link } from 'react-router-dom';
+import { HomeHeading, TrendingList } from './HomeMoviesList.styled';
+import { VscFlame } from 'react-icons/vsc';
+
+function HomeMovieList() {
   const [trendingMovies, setTrending] = useState([]);
   const [error, setError] = useState('');
 
@@ -24,18 +26,29 @@ export function HomeMovieList() {
       {error ? (
         <p>{error}</p>
       ) : (
-        <PopularMovies>
-          Trending this week!
-          {trendingMovies &&
-            trendingMovies.map(movie => (
-              <li key={movie.id}>
-                <Link to={`movies/${movie.id}`}>
-                  <p>{movie.title}</p>
-                </Link>
-              </li>
-            ))}
-        </PopularMovies>
+        <>
+          <HomeHeading>
+            Trending! <VscFlame color="red" />
+          </HomeHeading>
+          <TrendingList>
+            {trendingMovies &&
+              trendingMovies.map(movie => (
+                <li key={movie.id}>
+                  <Link to={`movies/${movie.id}`}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                      alt={movie.title}
+                    />
+
+                    <p>{movie.title}</p>
+                  </Link>
+                </li>
+              ))}
+          </TrendingList>
+        </>
       )}
     </>
   );
 }
+
+export default HomeMovieList;

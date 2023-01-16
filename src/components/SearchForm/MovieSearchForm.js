@@ -9,8 +9,7 @@ const MovieSearch = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
 
   const handleSearch = e => {
-    const query = e.currentTarget.value.toLowerCase();
-    setSearch(query);
+    setSearch(e.target.value.toLowerCase());
   };
 
   const handleSubmit = e => {

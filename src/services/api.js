@@ -5,7 +5,7 @@ const key = 'b84ac87767a32f4b7dddc0cfcc03fc4c';
 async function fetchHomepageMovies() {
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=${key}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${key}&language=en-US&page=1`
     );
     if (!response) {
       throw new Error("Sorry, something wrong's happened");

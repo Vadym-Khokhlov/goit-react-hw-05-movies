@@ -1,8 +1,8 @@
-import api from 'components/api';
+import api from 'services/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Review = () => {
+const Review = () => {
   const [review, setReview] = useState([]);
   const { movieId } = useParams();
 
@@ -11,7 +11,6 @@ export const Review = () => {
       try {
         const review = await api.fetchReview(Number(movieId));
         setReview(review);
-        console.log(review);
       } catch (error) {
         console.log(error);
       }
@@ -35,3 +34,4 @@ export const Review = () => {
     </section>
   );
 };
+export default Review;

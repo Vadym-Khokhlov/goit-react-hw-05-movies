@@ -1,16 +1,15 @@
-import MovieSearch from 'components/SearchMoviesList/MovieSearchForm';
+import MovieSearch from 'components/SearchForm/MovieSearchForm';
 import React, { useState, useEffect } from 'react';
-import api from '../components/api';
-import { MovieList } from '../components/SearchMoviesList/MovieList';
-// import { Outlet, Link } from 'react-router-dom';
+import api from '../services/api';
+import MovieList from '../components/SearchMovieList/MovieList';
+import { useSearchParams } from 'react-router-dom';
 
-export const Movies = () => {
-  const [search, setSearch] = useState('');
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [totalHits, setTotalHits] = useState(0);
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
   useEffect(() => {
     async function findMovies(query) {
@@ -20,14 +19,14 @@ export const Movies = () => {
 
       setIsLoading(true);
       try {
-        const movies = await api.fetchMoviesByName(query, page);
+        const movies = await api.fetchMoviesByName(query);
+
         if (movies.total_results === 0) {
           setError('Nothing was found, try again');
           return;
         }
 
         setMovies(movies.results);
-        setTotalHits(movies.total_results);
         setError('');
       } catch (error) {
         setError('Houston, we have a problem:) try to reload the page');
@@ -35,13 +34,11 @@ export const Movies = () => {
         setIsLoading(false);
       }
     }
-    findMovies(search);
-  }, [page, search]);
+    findMovies(query);
+  }, [query]);
 
-  const handleFormSubmit = search => {
-    setSearch(search);
-    setMovies([]);
-    setPage(1);
+  const handleFormSubmit = newQuery => {
+    setSearchParams({ query: newQuery });
   };
 
   return (
@@ -54,10 +51,12 @@ export const Movies = () => {
             {error && <p>Whoops, something went wrong: {error.message}</p>}
             {isLoading && <p>Loading...</p>}
 
-            {totalHits > 0 && <MovieList movies={movies} />}
+            {movies.length > 0 && <MovieList movies={movies} />}
           </div>
         </>
       )}
     </main>
   );
 };
+
+export default Movies;
