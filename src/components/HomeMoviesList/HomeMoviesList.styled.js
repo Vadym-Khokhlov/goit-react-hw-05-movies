@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const HomeHeading = styled.h2`
   text-align: center;
   color: red;
+  font-size: 30px;
 `;
 
 export const TrendingList = styled.ul`
@@ -19,7 +20,7 @@ export const TrendingItem = styled.div`
   align-items: center;
   justify-content: center;
   width: 300px;
-  height: 500px;
+  height: 400px;
 `;
 
 export const MovieTitle = styled.p`

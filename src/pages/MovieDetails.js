@@ -4,6 +4,11 @@ import { BackLink } from '../components/BackLink';
 import { Suspense } from 'react';
 import api from 'services/api';
 import { ScrollLink } from 'react-scroll';
+import {
+  AddInfo,
+  MovieCard,
+  MovieInfo,
+} from 'components/SearchMovieList/MoviesList.styled';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
@@ -24,7 +29,16 @@ const MovieDetails = () => {
     getMoviesById();
   }, [movieId]);
 
-  const { id, name, poster_path, title, overview, genres } = movie;
+  const {
+    id,
+    name,
+    poster_path,
+    title,
+    overview,
+    genres,
+    release_date,
+    vote_average,
+  } = movie;
   const backLinkHref = location.state?.from ?? '/';
 
   if (!movie) {
@@ -38,26 +52,35 @@ const MovieDetails = () => {
       ) : (
         <>
           <BackLink to={backLinkHref}>Back to movies</BackLink>
-          <div key={id}>
+
+          <MovieCard key={id}>
             <img
               src={`https://image.tmdb.org/t/p/w300${poster_path}`}
               alt={name}
             />
-            <h2>{title}</h2>
-            <h2>Genres:</h2>
-            <ul>
-              {genres &&
-                genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
-            </ul>
-            <p>{overview}</p>
-          </div>
-          <div>
-            <Link to="cast">Cast</Link>
-            <Link to="review">Review</Link>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Outlet />
-            </Suspense>
-          </div>
+            <MovieInfo>
+              <h2>
+                {title}({release_date})
+              </h2>
+              <p>Users Score: {vote_average} </p>
+
+              <h3>Overview:</h3>
+              <p>{overview}</p>
+              <h3>Genres:</h3>
+              <ul>
+                {genres &&
+                  genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
+              </ul>
+              <h3> Additional information</h3>
+              <AddInfo>
+                <Link to="cast">Cast</Link>
+                <Link to="review">Review</Link>
+              </AddInfo>
+            </MovieInfo>
+          </MovieCard>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </main>

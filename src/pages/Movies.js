@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import MovieList from '../components/SearchMovieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
+import { MoviesTitle } from 'components/SearchForm/MoviesSearchForm.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -45,7 +46,6 @@ const Movies = () => {
     <main>
       {movies && (
         <>
-          <h1>Movies page</h1>
           <MovieSearch onSubmit={handleFormSubmit} />
           <div>
             {error && <p>{error}</p>}

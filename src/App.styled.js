@@ -9,8 +9,7 @@ export const Header = styled.header`
   margin-bottom: 16px;
   border-bottom: 1px solid black;
   background-size: cover;
-  background-color: darkcyan; // /src/images
-  // background-image: url('./images/library-header_desktop_1x.jpg');
+  background: linear-gradient(to bottom, #192bec, #caff00);
   > nav {
     display: flex;
   }
@@ -20,11 +19,11 @@ export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
-  color: black;
+  color: aqua;
   font-weight: 500;
   margin-left: 25px;
   &.active {
-    color: white;
-    background-color: orangered;
+    color: khaki;
+    border-bottom: 2px solid khaki;
   }
 `;
