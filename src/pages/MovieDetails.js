@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { BackLink } from '../components/BackLink';
 import { Suspense } from 'react';
 import api from 'services/api';
+import { ScrollLink } from 'react-scroll';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
@@ -53,7 +54,7 @@ const MovieDetails = () => {
           <div>
             <Link to="cast">Cast</Link>
             <Link to="review">Review</Link>
-            <Suspense fallback={<div>Loading subpage...</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
               <Outlet />
             </Suspense>
           </div>

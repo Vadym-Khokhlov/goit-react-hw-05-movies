@@ -48,7 +48,7 @@ const Movies = () => {
           <h1>Movies page</h1>
           <MovieSearch onSubmit={handleFormSubmit} />
           <div>
-            {error && <p>Whoops, something went wrong: {error.message}</p>}
+            {error && <p>{error}</p>}
             {isLoading && <p>Loading...</p>}
 
             {movies.length > 0 && <MovieList movies={movies} />}
