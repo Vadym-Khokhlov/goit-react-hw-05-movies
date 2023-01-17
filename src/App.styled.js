@@ -7,7 +7,6 @@ export const Header = styled.header`
   align-items: center;
   justify-content: start;
   margin-bottom: 16px;
-  border-bottom: 1px solid black;
   background-size: cover;
   background: linear-gradient(to bottom, #192bec, #caff00);
   > nav {

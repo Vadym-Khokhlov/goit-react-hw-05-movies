@@ -16,18 +16,28 @@ export const MovieCard = styled.div`
   margin-right: 20px;
   border-radius: 25px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   max-height: 500px;
-
   gap: 40px;
 `;
 
 export const MovieInfo = styled.div`
+  display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-between;
+`;
+
+export const MainInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const AddInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const AddList = styled.div`
   display: flex;
   gap: 20px;
 `;
@@ -35,12 +45,4 @@ export const AddInfo = styled.div`
 export const ReviewList = styled.ul`
   margin-top: 40px;
   list-style: none;
-`;
-
-export const CastList = styled.ul`
-  margin-top: 40px;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
 `;
