@@ -44,7 +44,7 @@ const Cast = () => {
                   alt={original_name}
                 />
               )}
-              {!profile_path && <SlUser size={220} color="silver" />}
+              {!profile_path && <SlUser size={240} color="silver" />}
               <CastInfo>{original_name}</CastInfo>
               <CastInfo>Character: {character}</CastInfo>
             </CastCard>

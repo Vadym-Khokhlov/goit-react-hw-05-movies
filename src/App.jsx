@@ -54,4 +54,4 @@ export default App;
 // style movie form overview +
 // no movie default img -
 // space in search +
-// different size img in cast -
+// different size img in cast +

@@ -12,17 +12,18 @@ export const CastCard = styled.li`
   gap: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+  max-height: 350px;
   width: auto;
   padding: 5px 10px;
   /* border: 3px solid yellowgreen; */
-  border-radius: 0px 0px 14px 14px;
+  /* border-radius: 0px 0px 14px 14px; */
 `;
 
 export const CastImage = styled.img`
-  max-width: 100%;
-  height: 300;
+  width: 230px;
+  height: 300px;
 `;
 
 export const CastInfo = styled.p`
