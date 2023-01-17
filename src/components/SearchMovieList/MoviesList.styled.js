@@ -17,7 +17,8 @@ export const MovieCard = styled.div`
   border-radius: 25px;
   display: flex;
   justify-content: start;
-  max-height: 500px;
+  height: auto;
+  max-width: 1000px;
   gap: 40px;
 `;
 

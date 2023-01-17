@@ -22,6 +22,7 @@ const Movies = () => {
         const movies = await api.fetchMoviesByName(query);
 
         if (movies.total_results === 0) {
+          setMovies([]);
           setError('Nothing was found, try again');
           return;
         }

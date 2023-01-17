@@ -14,7 +14,7 @@ const MovieSearch = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const searchInput = search.toLowerCase();
+    const searchInput = search.toLowerCase().trim();
     if (searchInput === '') {
       alert('enter your query');
       return;
