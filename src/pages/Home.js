@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   HomeHeading,
   MovieTitle,
+  TrendingInfo,
   TrendingItem,
   TrendingList,
 } from '../components/HomeMoviesList/HomeMoviesList.styled';
@@ -42,12 +43,14 @@ function Home() {
               trendingMovies.map(movie => (
                 <TrendingItem key={movie.id}>
                   <Link to={`movies/${movie.id}`} state={{ from: location }}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                      alt={movie.title}
-                    />
+                    <TrendingInfo>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                        alt={movie.title}
+                      />
 
-                    <MovieTitle>{movie.title}</MovieTitle>
+                      <MovieTitle>{movie.title}</MovieTitle>
+                    </TrendingInfo>
                   </Link>
                 </TrendingItem>
               ))}

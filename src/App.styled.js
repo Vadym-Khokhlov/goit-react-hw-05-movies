@@ -21,6 +21,9 @@ export const Link = styled(NavLink)`
   color: aqua;
   font-weight: 500;
   margin-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &.active {
     color: khaki;
     border-bottom: 2px solid khaki;

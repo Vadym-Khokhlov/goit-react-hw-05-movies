@@ -15,12 +15,19 @@ export const TrendingList = styled.ul`
   list-style: none;
 `;
 
-export const TrendingItem = styled.div`
+export const TrendingItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 300px;
-  height: 400px;
+  height: auto;
+`;
+
+export const TrendingInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const MovieTitle = styled.p`
