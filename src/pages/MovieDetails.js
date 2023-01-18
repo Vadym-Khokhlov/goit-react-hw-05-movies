@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import { BackLink } from '../components/BackLink';
 import { Suspense } from 'react';
 import api from 'services/api';
+import formatter from 'services/formatter';
 // import { ScrollLink } from 'react-scroll';
+
 import {
   AddInfo,
   AddList,
@@ -13,7 +15,7 @@ import {
 } from 'components/SearchMovieList/MoviesList.styled';
 
 const MovieDetails = () => {
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState(null);
   const [error, setError] = useState('');
 
   const { movieId } = useParams();
@@ -31,16 +33,8 @@ const MovieDetails = () => {
     getMoviesById();
   }, [movieId]);
 
-  function RateMovie(vote) {
-    return Math.round(vote * 10);
-  }
-
-  function FormatDateRelease(date) {
-    if (!date) {
-      return;
-    }
-    const parsedDate = Date.parse(date);
-    return new Date(parsedDate).getFullYear();
+  if (movie === null) {
+    return;
   }
 
   const {
@@ -54,10 +48,6 @@ const MovieDetails = () => {
     vote_average,
   } = movie;
   const backLinkHref = location.state?.from ?? '/';
-
-  if (!movie) {
-    return;
-  }
 
   return (
     <main>
@@ -75,9 +65,9 @@ const MovieDetails = () => {
             <MovieInfo>
               <MainInfo>
                 <h2>
-                  {title}({FormatDateRelease(release_date)})
+                  {title}({formatter.FormatDateRelease(release_date)})
                 </h2>
-                <p>Users Score: {RateMovie(vote_average)}% </p>
+                <p>Users Score: {formatter.RateMovie(vote_average)}% </p>
                 <h3>Overview:</h3>
                 <p>{overview}</p>
                 <h3>Genres:</h3>
@@ -89,8 +79,12 @@ const MovieDetails = () => {
               <AddInfo>
                 <h3> Additional information</h3>
                 <AddList>
-                  <Link to="cast">Cast</Link>
-                  <Link to="review">Review</Link>
+                  <Link to="cast" state={{ from: backLinkHref }}>
+                    Cast
+                  </Link>
+                  <Link to="review" state={{ from: backLinkHref }}>
+                    Review
+                  </Link>
                 </AddList>
               </AddInfo>
             </MovieInfo>

@@ -5,18 +5,17 @@ import MovieList from '../components/SearchMovieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
   useEffect(() => {
+    if (!query) {
+      return;
+    }
     async function findMovies(query) {
-      if (!query) {
-        return;
-      }
-
       setIsLoading(true);
       try {
         const movies = await api.fetchMoviesByName(query);
@@ -44,17 +43,15 @@ const Movies = () => {
 
   return (
     <main>
-      {movies && (
-        <>
-          <MovieSearch onSubmit={handleFormSubmit} />
-          <div>
-            {error && <p>{error}</p>}
-            {isLoading && <p>Loading...</p>}
+      <>
+        <MovieSearch onSubmit={handleFormSubmit} />
+        <div>
+          {error && <p>{error}</p>}
+          {isLoading && <p>Loading...</p>}
 
-            {movies.length > 0 && <MovieList movies={movies} />}
-          </div>
-        </>
-      )}
+          {movies !== 0 && <MovieList movies={movies} />}
+        </div>
+      </>
     </main>
   );
 };

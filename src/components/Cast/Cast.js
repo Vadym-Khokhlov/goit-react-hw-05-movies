@@ -26,7 +26,7 @@ const Cast = () => {
     getCast();
   }, [movieId]);
 
-  if (!cast) {
+  if (!cast.length) {
     return;
   }
 

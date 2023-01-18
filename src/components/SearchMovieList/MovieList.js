@@ -3,6 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 
 const MovieList = ({ movies }) => {
   const location = useLocation();
+
+  if (movies === null) {
+    return;
+  }
+
   return (
     <>
       <Movies>

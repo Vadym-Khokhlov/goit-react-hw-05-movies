@@ -6,12 +6,14 @@ import {
   MovieTitle,
   TrendingItem,
   TrendingList,
-} from './HomeMoviesList.styled';
+} from '../components/HomeMoviesList/HomeMoviesList.styled';
+import { useLocation } from 'react-router-dom';
 import { VscFlame } from 'react-icons/vsc';
 
-function HomeMovieList() {
+function Home() {
   const [trendingMovies, setTrending] = useState([]);
   const [error, setError] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
     async function getTrendingMovies() {
@@ -36,10 +38,10 @@ function HomeMovieList() {
           </HomeHeading>
 
           <TrendingList>
-            {trendingMovies &&
+            {trendingMovies.length &&
               trendingMovies.map(movie => (
                 <TrendingItem key={movie.id}>
-                  <Link to={`movies/${movie.id}`}>
+                  <Link to={`movies/${movie.id}`} state={{ from: location }}>
                     <img
                       src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                       alt={movie.title}
@@ -56,4 +58,4 @@ function HomeMovieList() {
   );
 }
 
-export default HomeMovieList;
+export default Home;
