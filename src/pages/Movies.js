@@ -18,7 +18,7 @@ const Movies = () => {
     async function findMovies(query) {
       setIsLoading(true);
       try {
-        const movies = await api.fetchMoviesByName(query);
+        const movies = await api.fetchMoviesByName(query, 1);
 
         if (movies.total_results === 0) {
           setMovies([]);
